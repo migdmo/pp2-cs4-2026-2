@@ -12,7 +12,7 @@ import cors from 'cors';
 const app = express()
 
 app.use(cors({
- origin: (process.env.ALLOWED_ORIGINS ?? '').split(',').filter(Boolean),
+ origin: process.env.ALLOWED_ORIGINS.split(','),
 }))
 
 app.use(logger('dev'))
