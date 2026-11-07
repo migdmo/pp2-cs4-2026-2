@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import type { Customer } from '../types/Customer'
-import { customers } from '../data/custumers'
 import { Link } from 'react-router'
 
-type CustomerListProps = {
-  list?: Customer[]
+type CustomerProps = {
+  customer?: Customer[]
 }
 
 
 export function CustomersList() {
-  const [custumers, setCustomers] = useState<Customer[]>([])
+  const [customers, setCustomers] = useState<Customer[]>([])
   // Esta função está marcada com `async` porque, dentro dela,
  // há uma ou mais instruções assíncronas, isto é, que podem
  // ser executadas fora da ordem esperada, devido, por exemplo,
@@ -67,11 +66,11 @@ export function CustomersList() {
  // vazio, neste caso, indica que o useEffect() deverá ser
  // executado apenas uma vez, quando o componente estiver sendo
  // carregado na tela, para chamar fetchData().
-    useEffect(() => fetchData(), [])
+  useEffect(() => {fetchData()}, [])
 
  return (
     <>
-    <h2 className="h2 mb-3">Listagem de Clientes</h2>
+    <h2 className="h2 mb-3">customeragem de Clientes</h2>
    <p className="text-secondary">
      Total de clientes: {customers.length}
    </p>
@@ -101,15 +100,15 @@ export function CustomersList() {
 
 
          <tbody>
-           {customers.map(list => (
-             <tr key={list.id}>
-               <td>{list.id}</td>
-               <td>{list.name}</td>
-               <td>{list.ident_document}</td>
-               <td>{list.email}</td>
-               <td>{list.phone}</td>
-               <td>{list.municipality}</td>
-               <td>{list.state}</td>
+           {customers.map(customer => (
+             <tr key={customer.id}>
+               <td>{customer.id}</td>
+               <td>{customer.name}</td>
+               <td>{customer.ident_document}</td>
+               <td>{customer.email}</td>
+               <td>{customer.phone}</td>
+               <td>{customer.municipality}</td>
+               <td>{customer.state}</td>
                <td className="text-end">
                  <Link
                    to={`/customers/${customer.id}`}
